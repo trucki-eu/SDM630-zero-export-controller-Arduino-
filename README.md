@@ -9,10 +9,13 @@ Function of the code:
 ---------------------
 The Arduino Nano fetches the actual power of the SDM630 engery meter AND(!) the SUN GTIL2 every 500ms. A delay of 200ms is needed between the two read commands. It seams to be a peculiarity of the used Modbus Master libary. The new output power for the SUN GTIL2 inverter is calculated by the sum of the SDM630 power and the actual SUN GTIL2 output power. To be sure not to export any power to the grid the code will substract 50W (grid_offset) from the sum.
 
-Especially heating devices like an oven are switching high loads very often. As the inverter doesn't know the future it would export power to the grid every time the oven shuts off. To reduce such export the calculated inverter power is averaged over 60 values (avgcnt). This makes the controller slow, but reduces the export substantially. If the controller reads a grid power from the SDM630 engery meter which is smaller than 25W (grid_min) it will correct the inverter output power immediately.
+Especially heating devices like an oven are switching high loads very often. As the inverter doesn't know the future it would export power to the grid every time the oven shuts off. To reduce such grid exports the calculated inverter power is averaged over 60 values (avgcnt). This makes the controller slow, but reduces the grid export substantially. If the controller reads a grid power from the SDM630 engery meter which is smaller than 25W (grid_min) it will correct the inverter output power immediately.
 
-To give the SUN GTIL2 grid tie inverter time to reach the requested output power new values are transmitted to the inverter only every 5000ms if the received grid power from the SMD630 is higher than 75W (grid_max).
+To give the SUN GTIL2 grid tie inverter time to reach the requested output power new values are transmitted to the inverter only every 5000ms if the received grid power from the SMD630 is higher than 75W (grid_max). Between 25W (grid_min) to 75W (grid_max) the inverter output is not corrected.
 
 Arduino Serial Plotter:
 -----------------------
+To visualize grid and inverter power the received measurements of the SDM630 engery meter and the SUN GTIL display output power are transmitted via the serial interace of the Arduino Nano in a CSV format: 'PA: xx, GTIL: xx' .
+The Arduino Serial Plotter will visualize the CSV values as two charts:
 
+![Arduino Serial Plotter](/assets/images/SDM630_Sprungantwort_Plotter.JPG) 
