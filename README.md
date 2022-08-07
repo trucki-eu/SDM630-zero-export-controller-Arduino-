@@ -20,4 +20,4 @@ The Arduino Serial Plotter will visualize the CSV values as two charts:
 
 ![Arduino Serial Plotter](/assets/images/SDM630_Sprungantwort_Plotter.PNG) 
 
-The chart above shows the power taken from the grid in blue and the inverter output in brown. Until x~600 the grid power is 25W-75W and the inverter output is slowly rising ~200W. At x~600 an additional load with ~250W is switched on. This increases the inverter output until (x~745) the grid power is back to 25W-75W. From x~745 to x~845 the system is stable. At x~845 the additional load (~250W) is switched off and the inverter reduces is output quickly. For ~5s there is
+The chart above shows the power taken from the grid in blue and the inverter output in brown. Until x:600 the grid power is 25W-75W and the inverter output is slowly rising at about 200W. At x:600 an additional load with 250W is switched on. This increases the inverter output until (x:745) the grid power is back to 25W-75W. From x:745 to x:845 the system is stable. At x:845 the additional load (250W) is switched off and the inverter reduces is output quickly. For 5s there is about 250W exported to the grid.
